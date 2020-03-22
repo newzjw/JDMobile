@@ -1,0 +1,280 @@
+/*版心*/
+/*1.最大宽度设置成了640px*/
+/*2.设计稿psd的尺寸就是640px*/
+/*3.目的：当设备的尺寸比设计稿大不至于失真*/
+/*4.640px的尺寸设计稿的原因：根据当前主要流行的设备尺寸有关系iphone4,4s 尺寸320px*/
+/*5.750px的设计稿：参考原型iphone6 尺寸375px*/
+/*6.最小宽度320px  保证最小的宽度320px不让页面错乱*/
+.jd_container {
+    min-width: 320px;
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/*顶部搜索*/
+/* fixed容器宽度是基于浏览器的，在jd_search里面加个jd_search_box子容器（和版心的原理相似），用于居中 */
+.jd_search {
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+.jd_search .jd_search_box{
+    height: 40px;
+    /*这里为什么要设置min和max*/
+    /*因为父元素脱标了*/
+    min-width: 320px;
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    background: rgba(201,21,35,0);
+}
+.jd_search .jd_search_box .icon_logo{
+    position: absolute;
+    left: 10px;
+    top: 4px;
+    width: 60px;
+    height: 36px;
+    background-position: 0 -103px;
+}
+.jd_search .jd_search_box .login{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+}
+/* 双飞翼：logo和登录，不占位，用绝对定位，然后form设置左右padding */
+/*搜索输入框百分比的计算：基于父容器的内容的宽度，而不是父容器的宽度*/
+.jd_search .jd_search_box form{
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 50px;
+    position: relative;
+}
+.jd_search .jd_search_box span{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 80px;
+    top: 10px;
+    background-position: -60px -109px;
+}
+.jd_search .jd_search_box input{
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    background: #fff;
+    border-radius: 15px;
+    padding-left: 40px;
+}
+
+
+/*轮播图*/
+.jd_banner {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.jd_banner ul:first-child{
+    width: 1000%; /*这里要装10张图片*/
+    transform: translateX(-10%); /*显示第二张图片,用了transform之后层级提高了，覆盖了搜索，所以搜索设置z-index*/
+    -webkit-transform: translateX(-10%);
+}
+.jd_banner ul:first-child li {
+    width: 10%;
+    float: left;
+}
+.jd_banner ul:first-child li a{
+    display: block;
+    width: 100%;
+}
+.jd_banner ul:first-child li a img{
+    display: block;
+    width: 100%;
+}
+.jd_banner ul:last-child{
+    position: absolute;
+    height: 6px;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 6px;
+}
+.jd_banner ul:last-child li{
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    border: 1px solid #fff;
+    margin-left:10px;
+    float: left;
+}
+.jd_banner ul:last-child li:first-child{
+    margin-left:0;
+}
+.jd_banner ul:last-child li.now{
+    background: #fff;
+}
+
+/*导航栏*/
+/* 这里的自适应只是设备宽度变化的时候间距发生改变，图标的大小不变 */
+/* 实现办法：每个li宽度设置成25%，图片和p居中显示，给图片固定大小 */
+.jd_nav{
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+.jd_nav ul{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.jd_nav ul li{
+    float: left;
+    width: 25%;
+}
+.jd_nav ul li a{
+    display: block;
+    width: 100%;
+}
+.jd_nav ul li a img{
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+}
+.jd_nav ul li a p{
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    padding: 5px 0;
+}
+
+/*产品区块*/
+.jd_product{
+    padding: 0 5px;
+}
+/*产品盒子公共样式*/
+.jd_product_box{
+    margin-top: 10px;
+    box-shadow: 0 0 2px #ccc;
+    background: #fff;
+}
+.jd_product_box .tit{
+    height: 34px;
+    line-height: 34px;
+    border-bottom: 1px solid #ddd;
+}
+.jd_product_box .tit.nb{ /*第一个盒子没有下边框*/
+    border-bottom: none;
+}
+.jd_product_box .tit h3{
+    font-weight: normal;
+    position: relative;
+    padding-left:23px;
+}
+/* 标题前面修饰性的小竖条，用伪元素来实现 */
+/* 伪元素默认是行内元素，这里定位设置成absolute */
+.jd_product_box .tit h3::before{
+    content: "";
+    width: 3px;
+    height: 12px;
+    background: #d8505c;
+    position: absolute;
+    left: 10px;
+    top: 11px;
+}
+
+/*秒杀头部*/
+.sk .icon{ /*图标*/
+    width: 16px;
+    height: 20px;
+    float: left;
+    margin-left:10px;
+    margin-top:7px;
+    /* 这里进行了缩放，图片大小40*50，不是两倍缩放，而是2.5倍 */
+    background: url("../images/seckill-icon.png") no-repeat center/16px 20px;
+}
+.sk .name{
+    float: left;
+    margin-left:10px;
+    font-size: 16px;
+    color: #d8505c;
+}
+.sk .time{
+    float: left;
+    margin-left:10px;
+}
+.sk .time span{
+    float: left;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: #fff;
+    background: #333;
+    margin-left: 3px;
+    margin-top:9px;
+}
+.sk .time span:nth-child(3n){
+    background: #fff;
+    width: 3px;
+    color: #333;
+}
+/* 秒杀内容 */
+.sk .pro{
+    width: 100%;
+    padding: 10px 0;
+}
+.sk .pro li{
+    width: 33.3333%;
+    float: left;
+}
+.sk .pro li a{
+    display: block;
+    border-right: 1px solid #ddd;
+}
+.sk .pro li:last-child a{
+    border-right:none;
+}
+.sk .pro li a img{
+    display: block;
+    margin: 0 auto;
+    width: 64%;
+}
+.sk .pro li p{
+    text-align: center;
+    font-size: 12px;
+    padding: 5px 0;
+}
+.sk .pro li .nowPrice{
+    color: #d8505c;
+}
+.sk .pro li .oldPrice{
+    color: #666;
+    text-decoration: line-through;
+}
+
+/*组合样式的使用*/
+.w_50p{
+    width: 50%;
+}
+.w_50p img{
+    display: block;
+    width: 100%;
+}
+.bl{
+    border-left:1px solid #ddd;
+}
+.br{
+    border-right:1px solid #ddd;
+}
+.bb{
+    border-bottom:1px solid #ddd;
+}

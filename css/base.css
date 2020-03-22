@@ -1,0 +1,70 @@
+/*======== reset css =========*/
+*,
+*::before ,
+*::after{
+    padding: 0;
+    margin: 0;
+    /*移动端常用布局是非固定像素，这里设置盒子的宽高从边框开始算*/
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    /*点击高亮效果的清除，点击后透明*/
+    tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+body {
+    font-size: 14px;
+    font-family: "Microsoft YaHei",sans-serif;
+    color: #333;
+    background: #f5f5f5;
+}
+ul, ol {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+input, textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    /*输入框元素的外观在移动端可能有不同的样式，有些系统比如苹果有自带的输入框外观，但是别的系统没有*/
+    /* 这个只在移动端用，设置成none后方便自定义 */
+    -webkit-appearance: none;
+}
+
+/*=======common css========*/
+.f_left {
+    float: left;
+}
+.f_right {
+    float: right;
+}
+.clearfix::before,
+.clearfix::after{
+    content: "";
+    display: block;
+    visibility: hidden;
+    height: 0;
+    line-height: 0;
+    clear: both;
+}
+.m_l10{
+    margin-left:10px;
+}
+.m_r10{
+    margin-right:10px;
+}
+.m_t10{
+    margin-top:10px;
+}
+.m_b10{
+    margin-bottom:10px;
+}
+/*使用精灵图的公用样式，用到精灵图的时候就只要设定position*/
+/* 精灵图的大小是400*400（两倍图），二倍压缩之后才能更好的显示，解决移动端图片的失真问题 */
+[class ^= "icon_"],[class *= " icon_"] {
+    background-repeat: no-repeat;
+    background-image: url("../images/sprites.png");
+    background-size: 200px 200px;
+}
